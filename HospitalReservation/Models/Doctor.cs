@@ -69,5 +69,7 @@ namespace HospitalReservation.Models
         public ProfessionalInformation ProfInformation { get; set; }
         public ContactInformationDoctor CInformationDoctor { get; set; }
         public SystemFields SystemField { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
+        = new List<Booking>();
     }
 }

@@ -41,5 +41,7 @@ namespace HospitalReservation.Models
         public ProblemInformation PrbInformation { get; set; }
         public ContactInformationPatient CInformationPatient { get; set; }
         public SystemFields SystemField { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
+        = new List<Booking>();
     }
 }
