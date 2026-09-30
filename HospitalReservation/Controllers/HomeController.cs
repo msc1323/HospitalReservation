@@ -1,16 +1,18 @@
-using System.Diagnostics;
+using HospitalReservation.Data;
 using HospitalReservation.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Diagnostics;
 
 namespace HospitalReservation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
+            db = _db;
         }
 
         public IActionResult Index()
