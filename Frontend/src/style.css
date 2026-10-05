@@ -1,0 +1,81 @@
+/* Közös alapbeállítások */
+:root { font-family: Arial, sans-serif; color: #182c4f; background: #fff; font-synthesis: none; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { margin: 0; font-size: 16px; line-height: 1.6; }
+button, input { font: inherit; }
+a { color: #125bd5; text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid #164bc2; outline-offset: 4px; }
+.kontener { width: min(1120px, 90%); margin: 0 auto; }
+h1, h2, p { margin-top: 0; }
+.skip-link { position: absolute; top: -100px; left: 20px; padding: 12px; background: white; z-index: 5; }
+.skip-link:focus { top: 10px; }
+
+/* Fejléc és navigáció */
+.fejlec { border-bottom: 1px solid #dfe6ef; }
+.navigacio { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.logo { color: #135ed8; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+.logo:hover { text-decoration: none; }
+.logo-jel { display: inline-flex; justify-content: center; align-items: center; width: 34px; height: 34px; background: #1261df; color: white; border-radius: 5px; font-size: 29px; }
+nav { display: flex; flex-wrap: wrap; gap: 32px; }
+nav a { color: #243957; font-weight: bold; }
+
+/* Bemutatkozó rész */
+.bemutatkozas { background: #eef5ff; padding: 48px 0; border-bottom: 1px solid #dfebfa; }
+.felirat { font-size: 14px; font-weight: bold; letter-spacing: 1.4px; color: #245eaa; margin-bottom: 14px; }
+h1 { font-size: 48px; line-height: 1.12; letter-spacing: -1.5px; margin-bottom: 18px; }
+.bevezeto { color: #465c78; font-size: 19px; margin-bottom: 24px; }
+.gomb { display: inline-block; background: #1261df; color: white; padding: 12px 22px; border: 1px solid #1261df; border-radius: 5px; font-weight: bold; text-align: center; }
+.gomb:hover { background: #0c4caf; text-decoration: none; }
+
+/* A foglalás három lépése */
+.lepesek { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-top: 30px; padding-bottom: 30px; border-bottom: 1px solid #e1e7ef; }
+.lepes { display: flex; align-items: center; gap: 14px; }
+.sorszam { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: #eaf2ff; color: #155bca; font-weight: bold; }
+.lepes h2 { margin-bottom: 2px; font-size: 16px; }
+.lepes p { margin-bottom: 0; color: #53647a; font-size: 14px; }
+
+/* Kereső és szakterületi kártyák */
+.szakteruletek { padding-top: 38px; padding-bottom: 36px; }
+.szakasz-fejlec { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.szakasz-fejlec h2 { font-size: 28px; line-height: 1.25; margin-bottom: 8px; }
+.szakasz-fejlec p { color: #53647a; margin-bottom: 0; }
+.kereso { width: 300px; flex-shrink: 0; }
+.kereso label { display: block; font-size: 14px; margin-bottom: 6px; font-weight: bold; }
+.kereso input { width: 100%; padding: 10px 12px; border: 1px solid #a6b6cb; border-radius: 5px; color: #182c4f; background: white; }
+.kartya-racs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.szakterulet-kartya { display: flex; flex-direction: column; text-align: left; gap: 6px; padding: 24px; border: 1px solid #ccd9eb; border-radius: 5px; background: white; color: #182c4f; }
+.szakterulet-kartya:hover { background: #f3f7ff; border-color: #1261df; }
+.szakterulet-kartya.kivalasztott { background: #edf4ff; border-color: #1261df; box-shadow: inset 0 0 0 1px #1261df; }
+.kartya-cim { font-size: 19px; font-weight: bold; }
+.kartya-leiras { color: #53647a; font-size: 14px; }
+.uzenet { padding: 16px; background: #eef5ff; border-left: 3px solid #1261df; margin: 20px 0 0; }
+
+/* Segítség és lábléc */
+.segitseg { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #f4f7fb; padding: 24px; border-radius: 5px; margin-bottom: 40px; }
+.segitseg h2 { font-size: 20px; margin-bottom: 5px; }
+.segitseg p { margin-bottom: 0; color: #53647a; max-width: 620px; }
+.masodlagos { background: white; color: #125bd5; flex-shrink: 0; }
+.masodlagos:hover { background: #eaf2ff; }
+.lablec { border-top: 1px solid #e1e7ef; color: #53647a; font-size: 14px; padding: 22px 0; }
+.lablec .kontener { display: flex; justify-content: space-between; gap: 16px; }
+.lablec-logo { color: #135ed8; font-size: 18px; font-weight: bold; }
+
+/* Keskenyebb ablakban se csússzanak egymásra az elemek. */
+@media (max-width: 850px) {
+  .navigacio, .szakasz-fejlec, .segitseg { align-items: flex-start; flex-direction: column; }
+  .navigacio { padding-top: 18px; padding-bottom: 18px; gap: 12px; }
+  nav { gap: 20px; }
+  .kartya-racs { grid-template-columns: repeat(2, 1fr); }
+  .lepesek { grid-template-columns: 1fr; gap: 18px; }
+  .kereso { width: 100%; }
+}
+@media (max-width: 520px) {
+  h1 { font-size: 36px; }
+  .kartya-racs { grid-template-columns: 1fr; }
+  .asztali-sortores { display: none; }
+  .lablec .kontener { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
