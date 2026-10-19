@@ -17,10 +17,10 @@ namespace HospitalReservation.Models
 
         public DateOnly StartedAt { get; set; } = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
-        public ProblemSeverity Severity = ProblemSeverity.Mild;
+        public ProblemSeverity Severity { get; set; } = ProblemSeverity.Mild;
         public bool HasWorsened { get; set; } = false;
 
-        public string? AdditionalInformation { get; set; } = string.Empty;
+        public string? AdditionalInformation { get; set; }
     }
 
     public class ContactInformationPatient
@@ -35,12 +35,13 @@ namespace HospitalReservation.Models
         public string HomeAddress { get; set; } = string.Empty;
     }
 
-    public class Patient : PersonalInformation
+    public class Patient
     {
-        public PersonalInformation PsInformation { get; set; }
-        public ProblemInformation PrbInformation { get; set; }
-        public ContactInformationPatient CInformationPatient { get; set; }
-        public SystemFields SystemField { get; set; }
+        public int Id { get; set; }
+        public PersonalInformation PsInformation { get; set; } = new();
+        public ProblemInformation PrbInformation { get; set; } = new();
+        public ContactInformationPatient CInformationPatient { get; set; } = new();
+        public SystemFields SystemField { get; set; } = new();
         public ICollection<Booking> Bookings { get; set; }
         = new List<Booking>();
     }
