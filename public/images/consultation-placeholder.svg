@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" fill="none">
+  <!-- Helyőrző illusztráció: később egy valódi fotóra cserélhető. -->
+  <rect width="680" height="600" fill="#dce9e0"/>
+  <circle cx="370" cy="300" r="220" fill="#edf3e9"/>
+  <path d="M500 600V170h140v430" fill="#c4d7c9"/>
+  <path d="M519 194h103m-103 75h103m-103 75h103M571 170v236" stroke="#eaf0e8" stroke-width="9"/>
+  <path d="M559 434h82v166h-82z" fill="#a9c3b4"/>
+  <path d="M602 439c-61-4-79-61-57-92 41 8 59 42 57 92Z" fill="#6f9b80"/>
+  <path d="M602 439c-12-55 13-103 41-96 15 42-6 77-41 96Z" fill="#82a78c"/>
+  <path d="M601 442v58" stroke="#4f8167" stroke-width="5"/>
+  <path d="M187 575V367c0-55 43-100 96-100h79c56 0 101 45 101 100v208" fill="#f9faf5"/>
+  <path d="m283 267 39 55 41-55 17 129-58 48-57-48 18-129Z" fill="#b6d2ca"/>
+  <path d="m283 268-29 28 33 41-16 29 51 81m41-179 29 28-33 41 16 29-53 81" stroke="#e1e7de" stroke-width="3"/>
+  <path d="M297 226v50c0 24 49 24 49 0v-50" fill="#d6ad94"/>
+  <ellipse cx="322" cy="184" rx="67" ry="85" fill="#e9c6ac"/>
+  <path d="M255 189c-29-79 24-120 74-117 58 3 90 47 61 128l-15-55c-29 11-67 8-87-11l-23 68-10-13Z" fill="#455b50"/>
+  <path d="M253 174c-17-8-20 22-2 33m137-33c18-8 19 22 1 33" fill="#e9c6ac"/>
+  <path d="M288 181h19m29 0h19" stroke="#6b7565" stroke-width="3" stroke-linecap="round"/>
+  <path d="M306 220c9 6 20 6 29-1" stroke="#bb8677" stroke-width="3" stroke-linecap="round"/>
+  <path d="M275 288v74c0 49 85 49 85 0v-75" stroke="#628f80" stroke-width="7"/>
+  <path d="M317 400v30" stroke="#628f80" stroke-width="7"/>
+  <circle cx="317" cy="445" r="18" fill="#628f80"/><circle cx="317" cy="445" r="10" fill="#e4ede4"/>
+  <rect x="388" y="341" width="40" height="28" rx="4" fill="#e0ebe1"/>
+  <path d="M400 355h16m-8-8v16" stroke="#638c77" stroke-width="3"/>
+  <path d="m216 387-31 130c-7 28 19 38 39 27l69-41m140-116 20 119c3 21-14 30-29 24l-62-32" stroke="#f9faf5" stroke-width="49" stroke-linecap="round"/>
+  <path d="m271 508 34-21m75 15-36-20" stroke="#e9c6ac" stroke-width="25" stroke-linecap="round"/>
+  <path d="m288 443 85 8-12 66-85-8z" fill="#73998a"/><path d="m311 450 37 4" stroke="#bed2c4" stroke-width="6"/>
+  <path d="M0 548h680v52H0z" fill="#b2c9b9"/>
+  <path d="M0 445c35-42 98-55 134-11 24 30 21 77 21 114H0V445Z" fill="#9db8a7"/>
+  <path d="M0 398c41-20 82 16 84 53l-9 97H0V398Z" fill="#6a8e7b"/>
+  <rect x="462" y="512" width="61" height="36" rx="5" fill="#edf2e9"/><path d="M523 519c23-5 23 24 0 20" stroke="#edf2e9" stroke-width="7"/>
+  <path d="M118 125h68m-34-34v68" stroke="#a7c7b3" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="452" cy="101" r="7" fill="#b7cebb"/>
+</svg>

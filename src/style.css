@@ -1,0 +1,980 @@
+/* Alapbeállítások: a padding és a border is beleszámít az elemek szélességébe. */
+* {
+  box-sizing: border-box;
+}
+:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #243e39;
+  background: #fff;
+  font-synthesis: none;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+select {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  color: inherit;
+}
+button,
+input,
+select {
+  min-width: 0;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+  vertical-align: middle;
+}
+/* Az ikonok automatikusan átveszik a körülöttük lévő szöveg színét. */
+button {
+  border: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+:focus-visible {
+  outline: 3px solid #cb9060;
+  outline-offset: 5px;
+}
+::selection {
+  background: #c7e5db;
+}
+.container {
+  width: min(1180px, calc(100% - 96px));
+  margin: 0 auto;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 15px 23px;
+  color: #fff;
+  background: #147d72;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.button:hover {
+  background: #0d655c;
+  transform: translateY(-2px);
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  padding: 0;
+  color: #147569;
+  font-weight: 600;
+  font-size: 14px;
+}
+.text-link:hover {
+  color: #08483e;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: #43756a;
+}
+.tiny-dot {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #258e75;
+  flex-shrink: 0;
+}
+
+/* Fejléc: a flex egymás mellé rendezi a logót, a menüt és a gombot. */
+.header {
+  height: 88px;
+  border-bottom: 1px solid #edf1ec;
+  background: #fff;
+  position: relative;
+  z-index: 5;
+}
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-weight: 750;
+  font-size: 20px;
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+.logo-symbol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #147d72;
+  color: #fff;
+  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+  margin-right: 9px;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 33px;
+  font-size: 13px;
+  color: #586762;
+}
+.navigation a:hover {
+  color: #147d72;
+}
+.header-button {
+  padding: 12px 18px;
+  font-size: 12px;
+}
+.menu-toggle {
+  display: none;
+  background: #edf5f0;
+  padding: 9px;
+  border-radius: 7px;
+}
+
+/* Nyitó rész: két oszlop, balra szöveg, jobbra a cserélhető helyőrző kép. */
+.hero {
+  background: #f5f7f1;
+  padding: 53px 0 0;
+  border-bottom: 1px solid #eaf0e9;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  align-items: center;
+  gap: 63px;
+}
+.hero-copy {
+  padding: 2px 0 41px;
+}
+.hero-copy > .eyebrow {
+  background: #e8f0e7;
+  padding: 8px 12px;
+  border-radius: 5px;
+  letter-spacing: 1.6px;
+}
+h1 {
+  font-size: clamp(45px, 4.6vw, 65px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -2.8px;
+  margin: 22px 0;
+}
+h1 > span {
+  color: #147d72;
+}
+.hero-copy > p {
+  color: #67756d;
+  max-width: 420px;
+  font-size: 15px;
+  line-height: 1.9;
+}
+.hero-copy > .text-link {
+  margin-top: 23px;
+}
+.hero-benefits {
+  margin-top: 38px;
+  display: flex;
+  gap: 25px;
+  color: #617467;
+  font-size: 11px;
+}
+.hero-benefits > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.hero-benefits .icon {
+  color: #448c75;
+}
+.hero-visual {
+  height: 409px;
+  position: relative;
+  margin-bottom: 34px;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 70px 16px 16px 16px;
+}
+.image-caption {
+  position: absolute;
+  left: 23px;
+  top: 20px;
+  z-index: 1;
+  background: #ffffffdf;
+  border: 1px solid #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #526f5f;
+}
+.floating-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
+  bottom: 27px;
+  left: -32px;
+  padding: 15px 20px 15px 13px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px #294c3410;
+}
+.note-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eef5ed;
+  color: #54876c;
+}
+.floating-note strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.floating-note div > span {
+  font-size: 10px;
+  color: #758277;
+}
+
+/* Kereső: a mezők címkéje és értéke egymás alatt jelenik meg. */
+.search-container {
+  position: relative;
+  margin-bottom: -30px;
+  padding-top: 6px;
+}
+.search-form {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr auto;
+  align-items: center;
+  padding: 19px;
+  background: #fff;
+  border: 1px solid #e6ebe3;
+  box-shadow: 0 8px 24px #31453408;
+  border-radius: 12px;
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border-right: 1px solid #e9ede6;
+  color: #558374;
+  min-width: 0;
+}
+.search-field > span {
+  min-width: 0;
+  width: 100%;
+}
+.field-label {
+  display: block;
+  font-size: 10px;
+  color: #7b857e;
+  margin-bottom: 6px;
+}
+.search-field select,
+.search-field input {
+  border: 0;
+  background: transparent;
+  display: block;
+  color: #324d40;
+  font-size: 12px;
+  width: 100%;
+  padding: 0 10px 0 0;
+  height: 21px;
+}
+.date-field {
+  border: 0;
+}
+.search-button {
+  font-size: 12px;
+  padding: 17px 22px;
+}
+.search-hint {
+  padding-top: 12px;
+  color: #788277;
+  font-size: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.search-hint > span {
+  color: #657363;
+  margin-left: 3px;
+}
+
+/* Szakterületek: a grid hat egyforma szélességű oszlopot hoz létre. */
+.section {
+  padding-top: 91px;
+  padding-bottom: 63px;
+}
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 28px;
+}
+h2 {
+  font-size: 32px;
+  line-height: 1.23;
+  letter-spacing: -1.1px;
+  font-weight: 500;
+}
+.section-heading h2 {
+  margin-top: 11px;
+}
+.section-heading > p {
+  color: #7a837d;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 13px;
+}
+.specialty-card {
+  padding: 23px 14px 17px;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e7ece6;
+  border-radius: 10px;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.specialty-card:hover {
+  transform: translateY(-5px);
+  border-color: #70a58f;
+}
+.specialty-icon {
+  width: 49px;
+  height: 49px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  margin-bottom: 19px;
+}
+.pink {
+  color: #b5757e;
+  background: #fbefee;
+}
+.peach {
+  color: #b28c67;
+  background: #fbf1e7;
+}
+.blue {
+  color: #6f91af;
+  background: #ecf3f9;
+}
+.purple {
+  color: #9780af;
+  background: #f2eef9;
+}
+.yellow {
+  color: #b29c59;
+  background: #faf6e8;
+}
+.green {
+  color: #739779;
+  background: #eef5ec;
+}
+.specialty-card strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.specialty-description {
+  color: #818a80;
+  display: block;
+  font-size: 9px;
+  margin-top: 9px;
+  line-height: 1.7;
+}
+.card-arrow {
+  display: flex;
+  margin-top: 19px;
+  color: #7b9c88;
+}
+
+/* Orvoskártyák: a képek helyi SVG fájlok, ezért internet nélkül is láthatók. */
+.doctors-section {
+  background: #f8faf7;
+  padding: 57px 0 61px;
+  border-top: 1px solid #edf1e9;
+  border-bottom: 1px solid #edf1e9;
+}
+.doctors-section .section-heading {
+  margin-bottom: 10px;
+}
+.doctors-section .section-heading > .text-link {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.demo-note {
+  color: #6f7c70;
+  font-size: 10px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.doctor-card {
+  background: #fff;
+  border: 1px solid #e5eae1;
+  border-radius: 11px;
+  overflow: hidden;
+}
+.doctor-image {
+  position: relative;
+  height: 225px;
+  overflow: hidden;
+}
+.doctor-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.sage {
+  background: #dfe8df;
+}
+.sand {
+  background: #ebe6dc;
+}
+.lavender {
+  background: #e6e6ed;
+}
+.doctor-content {
+  padding: 22px;
+}
+.doctor-specialty {
+  font-size: 10px;
+  color: #277c66;
+}
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.doctor-content h3 {
+  margin: 6px 0 10px;
+}
+.doctor-location {
+  font-size: 11px;
+  color: #7d887d;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.doctor-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #edf0e9;
+  padding-top: 16px;
+  margin-top: 20px;
+}
+.doctor-bottom > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #6d8370;
+  font-size: 9px;
+}
+.doctor-bottom .tiny-dot {
+  width: 5px;
+  height: 5px;
+}
+.button-outline {
+  background: #fff;
+  color: #287c68;
+  border-color: #c6dcd0;
+  font-size: 11px;
+  padding: 9px 12px;
+  gap: 12px;
+  border-radius: 6px;
+}
+.button-outline:hover {
+  background: #eff6ef;
+}
+.empty-state {
+  padding: 35px;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px dashed #b0c6b7;
+}
+.empty-state > .icon {
+  margin-bottom: 10px;
+  color: #52846e;
+}
+.empty-state p {
+  margin: 12px 0 23px;
+  color: #738173;
+  font-size: 14px;
+}
+
+.footer {
+  padding-top: 42px;
+  padding-bottom: 24px;
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding-bottom: 31px;
+}
+.footer-top .logo {
+  font-size: 22px;
+}
+.footer-top .logo-symbol {
+  width: 31px;
+  height: 31px;
+  border-radius: 8px;
+}
+.footer-top p {
+  font-size: 11px;
+  color: #7d857a;
+}
+.footer-top .text-link {
+  font-size: 11px;
+}
+.footer-bottom {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  color: #7b8578;
+  font-size: 9px;
+  border-top: 1px solid #e8ece5;
+  padding-top: 20px;
+  line-height: 1.7;
+}
+.footer-bottom a:hover {
+  color: #147d72;
+}
+
+/* A dialog az oldal fölött jelenik meg; a backdrop a mögötte lévő sötét réteg. */
+.booking-dialog {
+  padding: 0;
+  border: 1px solid #d6e2d5;
+  border-radius: 15px;
+  color: #243e39;
+  width: min(460px, calc(100% - 30px));
+  max-height: 90dvh;
+}
+.booking-dialog::backdrop {
+  background: #173d35a6;
+}
+.booking-dialog-content {
+  position: relative;
+  padding: 35px 25px;
+}
+.dialog-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  padding: 7px;
+  border-radius: 50%;
+  background: #edf4eb;
+}
+.booking-dialog h2 {
+  margin: 18px 0 8px;
+  font-size: 27px;
+}
+.booking-doctor-info,
+.time-label {
+  color: #748170;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.dialog-date {
+  display: block;
+  margin: 24px 0 20px;
+  font-size: 12px;
+}
+.dialog-date input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  color: #365c48;
+  background: #fff;
+  border: 1px solid #c9daca;
+  border-radius: 7px;
+}
+.dialog-done {
+  width: 100%;
+  margin-top: 20px;
+}
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.time-slot {
+  background: #f1f6ee;
+  border: 1px solid #d3e0cf;
+  border-radius: 7px;
+  padding: 10px 14px;
+  font-size: 12px;
+}
+.time-slot.selected {
+  background: #147d72;
+  color: white;
+}
+.time-slot:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.booking-message {
+  margin-top: 14px;
+  padding: 10px;
+  background: #eef5eb;
+  border-radius: 7px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.doctor-list-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Táblagépen kevesebb oszlopot használunk, így nem lesznek túl keskenyek a kártyák. */
+@media (max-width: 1100px) {
+  .container {
+    width: calc(100% - 64px);
+  }
+  .hero-grid {
+    gap: 40px;
+  }
+  .hero-visual {
+    height: 380px;
+  }
+  .hero-benefits {
+    gap: 13px;
+  }
+  .search-form {
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 15px 0;
+  }
+  .search-button {
+    grid-column: 1 / -1;
+    padding: 12px;
+  }
+  .specialty-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .specialty-card {
+    position: relative;
+    padding: 18px;
+  }
+  .card-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  .specialty-icon {
+    margin-bottom: 13px;
+  }
+  .specialty-description {
+    font-size: 11px;
+  }
+  .doctor-grid {
+    gap: 16px;
+  }
+  .doctor-content {
+    padding: 17px;
+  }
+  .doctor-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .doctor-bottom .button {
+    width: 100%;
+  }
+}
+
+/* Mobilon a fő tartalom egy oszlopos, a navigáció külön gombbal nyitható. */
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 25px;
+  }
+  .container {
+    width: calc(100% - 40px);
+  }
+  .header {
+    height: 74px;
+  }
+  .header-inner {
+    gap: 12px;
+  }
+  .logo {
+    font-size: 18px;
+  }
+  .header-button {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .navigation {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 74px;
+    background: #fff;
+    padding: 24px;
+    border-bottom: 1px solid #e1e9dd;
+    box-shadow: 0 10px 20px #1d3e3010;
+  }
+  .navigation.is-open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+  .hero {
+    padding-top: 35px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .hero-copy {
+    padding-bottom: 0;
+  }
+  h1 {
+    font-size: 49px;
+    letter-spacing: -2px;
+    margin: 18px 0;
+  }
+  .hero-copy > p {
+    font-size: 14px;
+    max-width: 450px;
+  }
+  .hero-copy > .text-link {
+    margin-top: 18px;
+  }
+  .hero-benefits {
+    margin-top: 23px;
+    gap: 23px;
+  }
+  .hero-visual {
+    height: 320px;
+    margin: 7px 0 8px 12px;
+  }
+  .hero-image {
+    border-top-left-radius: 50px;
+    object-position: center 46%;
+  }
+  .floating-note {
+    left: -12px;
+    bottom: 22px;
+    padding: 11px 14px;
+  }
+  .image-caption {
+    top: 16px;
+    left: 16px;
+  }
+  .search-container {
+    margin-bottom: -28px;
+    padding-top: 10px;
+  }
+  .search-form {
+    grid-template-columns: 1fr;
+    padding: 8px 19px 18px;
+    gap: 0;
+  }
+  .search-field {
+    border-right: 0;
+    border-bottom: 1px solid #e9ede6;
+    padding: 14px 0;
+  }
+  .search-field select,
+  .search-field input {
+    font-size: 14px;
+    height: 24px;
+  }
+  .field-label {
+    font-size: 11px;
+  }
+  .date-field {
+    border: 0;
+  }
+  .search-button {
+    padding: 15px;
+    margin-top: 4px;
+    font-size: 13px;
+  }
+  .search-hint {
+    flex-wrap: wrap;
+    font-size: 9px;
+    gap: 3px;
+  }
+  .section {
+    padding-top: 78px;
+    padding-bottom: 42px;
+  }
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 23px;
+  }
+  .section-heading > p {
+    font-size: 12px;
+  }
+  .desktop-break {
+    display: none;
+  }
+  h2 {
+    font-size: 28px;
+    letter-spacing: -0.9px;
+  }
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+  .specialty-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .specialty-card {
+    min-height: 167px;
+    padding: 17px 13px;
+  }
+  .specialty-description {
+    font-size: 10px;
+    max-width: 130px;
+    padding-right: 10px;
+  }
+  .card-arrow {
+    bottom: 15px;
+    right: 13px;
+  }
+  .doctors-section {
+    padding: 39px 0;
+  }
+  .doctor-grid {
+    grid-template-columns: 1fr;
+    gap: 21px;
+  }
+  .doctor-image {
+    height: 255px;
+  }
+  .doctor-image img {
+    object-fit: contain;
+  }
+  .doctor-content {
+    padding: 22px;
+  }
+  .doctor-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+  .doctor-bottom > .button {
+    width: auto;
+  }
+  .footer {
+    padding-top: 32px;
+  }
+  .footer-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 24px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
