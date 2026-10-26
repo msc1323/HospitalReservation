@@ -32,5 +32,7 @@ namespace HospitalReservation.Controllers
                 .ToListAsync();
             return View(patient_list);
         }
+
+        
     }
 }
