@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 290" fill="none">
+  <!-- Profilkép helye: a kártyák háttérszínét a CSS adja. -->
+  <circle cx="220" cy="165" r="119" fill="white" opacity=".24"/>
+  <path d="M116 310v-48c0-57 46-103 104-103s104 46 104 103v48" fill="#f8faf7"/>
+  <path d="m195 166 25 34 25-34 14 124h-78l14-124Z" fill="#a4bcb1"/>
+  <path d="M203 140v31c0 21 35 21 35 0v-31" fill="#c5ccbf"/>
+  <ellipse cx="220" cy="106" rx="44" ry="53" fill="#d6dbce"/>
+  <path d="M176 109c-16-49 12-78 45-77 40 1 62 36 43 78l-12-40c-19 12-44 12-59 1l-17 38Z" fill="#738b7c"/>
+  <path d="m192 170-21 23 23 26-11 22 37 49m28-120 21 23-23 26 11 22-37 49" stroke="#e0e8df" stroke-width="2"/>
+  <path d="M188 186v47a32 32 0 0 0 64 0v-47" stroke="#658c7e" stroke-width="4"/>
+  <path d="M220 265v11" stroke="#658c7e" stroke-width="4"/><circle cx="220" cy="282" r="8" fill="#658c7e"/>
+</svg>

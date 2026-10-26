@@ -1,0 +1,22 @@
+{
+  "name": "orvosi-idopontfoglalo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "format": "prettier --write src index.html README.md"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.13.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "prettier": "3.5.3",
+    "vite": "^8.3.5"
+  }
+}

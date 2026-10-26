@@ -1,8 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "React";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Ide renderelődik a React alkalmazás -->
+<div id="root"></div>
+
+@section Scripts {
+    <!-- Vite által generált JS fájlok betöltése -->
+    <script type="module" src="~/dist/assets/index.js"></script>
+    <link rel="stylesheet" href="~/dist/assets/index.css" />
+}
