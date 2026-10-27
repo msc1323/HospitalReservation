@@ -16,16 +16,27 @@ namespace HospitalReservation.Controllers
         }
 
         [HttpPost("new")]
-        public async Task<IActionResult> NewBooking(Doctor doctor, Booking booking)
+        public async Task<IActionResult> NewBooking([FromBody] BookingDto request)
         {
+            var booking = new Booking
+            {
+                PatientId = request.PatientId,
+                DoctorId = request.DoctorId,
+                StartTime = request.StartTime,
+                FinishTime = request.FinishTime,
+                Comment = request.Comment,
+                Status = false
+            };
+
             foreach (var item in _db.Bookings)
             {
-                if (item.StartTime == booking.StartTime)
+                if (item.StartTime == booking.StartTime && item.DoctorId == booking.DoctorId)
                 {
                     return Conflict(new { success = false, message = "Ez az időpont már foglalt!"});
                 }
             }
             _db.Bookings.Add(booking);
+            await _db.SaveChangesAsync();
             return Ok();
         }
     }
