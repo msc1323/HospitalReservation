@@ -1,6 +1,7 @@
 ﻿using HospitalReservation.Data;
 using Microsoft.AspNetCore.Mvc;
 using HospitalReservation.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalReservation.Controllers
 {
@@ -38,6 +39,24 @@ namespace HospitalReservation.Controllers
             _db.Bookings.Add(booking);
             await _db.SaveChangesAsync();
             return Ok();
+        }
+
+        [HttpGet("availability")]
+        public async Task<IActionResult> Availability([FromQuery] int doctorId, [FromQuery] DateTime date)
+        {
+            if (date == default) return BadRequest(new { message = "Adj meg egy dátumot." }); //default érték akkor jön ha nem választ semmit a user
+            var doctor = await _db.Doctors.FirstOrDefaultAsync(d => d.Id == doctorId && d.SystemField.isActive);
+            if (doctor is null) return NotFound(new { message = "Az orvos nem található." });
+            var day = date.Date;
+            var nextDay = day.AddDays(1);
+            var bookings = await _db.Bookings
+                .Where(b => b.DoctorId == doctorId && b.StartTime < nextDay && b.FinishTime > day).ToListAsync();
+            return Ok(new
+            {
+                Doctor = doctor,
+                Date = day,
+                Bookings = bookings
+            });
         }
     }
 }
