@@ -1,5 +1,5 @@
-// Ezek csak bemutató adatok. Később egy szervertől is érkezhetnek.
-// Az icon mezőben közvetlenül a Bootstrap Icons ikonneve szerepel.
+// This is just sample data. Later, it could also come from a server.
+// The icon field contains the Bootstrap Icons icon name directly.
 export const specialties = [
   {
     name: "Kardiológia",
@@ -39,7 +39,7 @@ export const specialties = [
   },
 ];
 
-// Minden szakterülethez két mintaorvos tartozik, különböző városokból.
+// Each medical specialty is assigned two representative doctors from different cities.
 export const doctors = [
   {
     id: 1,
