@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// A fejléc saját állapota csak azt jegyzi meg, hogy nyitva van-e a mobilmenü.
+// The header’s own state only tracks whether the mobile menu is open.
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
