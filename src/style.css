@@ -1,4 +1,4 @@
-/* Alapbeállítások: a padding és a border is beleszámít az elemek szélességébe. */
+/* Default settings: both padding and border are included in the width of the elements. */
 * {
   box-sizing: border-box;
 }
@@ -53,7 +53,7 @@ select {
   line-height: 1;
   vertical-align: middle;
 }
-/* Az ikonok automatikusan átveszik a körülöttük lévő szöveg színét. */
+/* The icons automatically inherit the color of the surrounding text. */
 button {
   border: 0;
 }
@@ -133,7 +133,7 @@ a {
   flex-shrink: 0;
 }
 
-/* Fejléc: a flex egymás mellé rendezi a logót, a menüt és a gombot. */
+/* Header: the flex arranges the logo, menu, and button side by side. */
 .header {
   height: 88px;
   border-bottom: 1px solid #edf1ec;
@@ -189,7 +189,7 @@ a {
   border-radius: 7px;
 }
 
-/* Nyitó rész: két oszlop, balra szöveg, jobbra a cserélhető helyőrző kép. */
+/* Hero section: two columns, text on the left, replaceable placeholder image on the right. */
 .hero {
   background: #f5f7f1;
   padding: 53px 0 0;
@@ -302,7 +302,7 @@ h1 > span {
   color: #758277;
 }
 
-/* Kereső: a mezők címkéje és értéke egymás alatt jelenik meg. */
+/* Search: the field label and value appear one below the other. */
 .search-container {
   position: relative;
   margin-bottom: -30px;
@@ -368,7 +368,7 @@ h1 > span {
   margin-left: 3px;
 }
 
-/* Szakterületek: a grid hat egyforma szélességű oszlopot hoz létre. */
+/* Medical specialties: the grid creates columns of equal width. */
 .section {
   padding-top: 91px;
   padding-bottom: 63px;
@@ -464,7 +464,7 @@ h2 {
   color: #7b9c88;
 }
 
-/* Orvoskártyák: a képek helyi SVG fájlok, ezért internet nélkül is láthatók. */
+/* Doctor cards: the images are local SVG files, so they are visible without an internet connection. */
 .doctors-section {
   background: #f8faf7;
   padding: 57px 0 61px;
@@ -626,7 +626,7 @@ h3 {
   color: #147d72;
 }
 
-/* A dialog az oldal fölött jelenik meg; a backdrop a mögötte lévő sötét réteg. */
+/* The dialog appears over the page; the backdrop is the dark layer behind it. */
 .booking-dialog {
   padding: 0;
   border: 1px solid #d6e2d5;
@@ -715,7 +715,7 @@ h3 {
   gap: 16px;
 }
 
-/* Táblagépen kevesebb oszlopot használunk, így nem lesznek túl keskenyek a kártyák. */
+/* On tablets, we use fewer columns so that the cards do not become too narrow. */
 @media (max-width: 1100px) {
   .container {
     width: calc(100% - 64px);
@@ -771,7 +771,7 @@ h3 {
   }
 }
 
-/* Mobilon a fő tartalom egy oszlopos, a navigáció külön gombbal nyitható. */
+/* On mobile devices, the main content is a single column, and the navigation is accessible via a separate button. */
 @media (max-width: 760px) {
   html {
     scroll-padding-top: 25px;
