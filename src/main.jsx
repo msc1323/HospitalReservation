@@ -1,11 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-// A Bootstrap Icons stíluslapja tartalmazza az ikonokhoz szükséges betűkészletet.
+// The Bootstrap Icons stylesheet contains the font required for the icons.
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./style.css";
 
-// A createRoot összeköti a React alkalmazást az index.html root elemével.
+// The createRoot connects the React application to the root element in index.html.
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
