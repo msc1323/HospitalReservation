@@ -1,79 +1,51 @@
-# Orvosi időpontfoglaló főoldal
+# Medical Appointment Booking
 
-Egyszerű React főoldal magyar magyarázó kommentekkel, külön JSX- és CSS-fájllal.
-Nincs backend, valódi időpontfoglalás, regisztráció vagy adatküldés.
-Az orvosnevek és az időpontok kitalált bemutató adatok.
+A simple React for booking medical appointments to different doctors.
+The doctor names and appointment times are fictional, placeholder data.
 
-## Elindítás
+## Getting Started
 
-A projekt mappájában futtasd:
+In the project folder, run:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Ha Windows PowerShellben az `npm` futtatását a szkript-házirend tiltja,
-használd az `npm.cmd install` és `npm.cmd run dev` parancsokat.
-Nyisd meg a terminálban megjelenő helyi címet.
+If running `npm` in Windows PowerShell is blocked by the script execution policy,
+use the commands `npm.cmd install` and `npm.cmd run dev`.
+Open the local URL displayed in the terminal.
 
-## A fájlok szerepe
+## What can you try out?
 
-- `src/main.jsx`: elindítja a Reactet és betölti a CSS-t.
-- `src/App.jsx`: összeállítja a főoldalt és kezeli a keresőmezőket.
-- `src/data.js`: a 12 mintaorvos és a 6 szakterület adatai.
-- `src/components/Header.jsx`: fejléc és mobilmenü.
-- `src/components/Hero.jsx`: a nyitó szöveg és a helyőrző kép.
-- `src/components/DoctorCard.jsx`: egy orvoskártya és a felugró időpontválasztó ablak.
-- `src/components/Footer.jsx`: lábléc.
-- `src/style.css`: az oldal színei, elrendezése és mobilnézete.
-- `public/images/`: a képek helyét jelölő SVG-illusztrációk.
-- `index.html`: a React alkalmazást betöltő HTML-fájl.
+- As you modify the search fields, the list is filtered immediately based on medical specialty and city.
+- The "Find an appointment" button displays all results and scrolls to the list.
+- Clicking on the specialty cards filters the list of doctors in the same way.
+- The "All doctors" button displays all 12 demo profiles, featuring two sample doctors for each specialty.
+- The "Appointments" button opens a pop-up window where you can select a day and a sample appointment time. You do not need to specify a date in the search fields beforehand.
+- The window can be closed by clicking the "X" button, the "OK" button, pressing the Escape key, or clicking on the dark background.
+- The date selection determines the day for the demo appointment; there is no actual availability calendar.
+- The mobile menu can be opened and closed.
 
-## Mit lehet kipróbálni?
+## How should you read the React code?
 
-- A keresőmezők módosításakor a lista azonnal szűkül szakterület és város alapján.
-- Az „Időpontot keresek” gomb megmutatja az összes találatot, és a listához görget.
-- A szakterületkártyákra kattintás ugyanúgy szűri az orvosokat.
-- Az „Összes orvos” gomb megmutatja mind a 12 bemutató profilt, szakterületenként két mintaorvossal.
-- Az „Időpontok” gomb felugró ablakot nyit, ahol napot és minta időpontot választhatsz. Nem szükséges előre dátumot megadni a keresőben.
-- Az ablak az X gombbal, a „Rendben” gombbal, Escape-pel vagy a sötét háttérre kattintva zárható be.
-- A dátum a bemutató időpont napját állítja be; valódi elérhetőségi naptár nincs.
-- A mobilmenü nyitható és bezárható.
+1. `main.jsx` initializes the `App` component.
+2. The `return` section of `App.jsx` defines the structure of the page. Elements starting with a capital letter are custom components.
+3. `useState` stores a value; for example, `setCity` updates the selected city.
+4. The `onChange` event triggers a function when a field value changes, while `onClick` triggers one upon a click.
+5. The `filter` method selects the doctors, and `map` creates cards from them.
+6. The `DoctorCard` component receives `doctor`, `date`, and `minimumDate` data from its parent; these are known as "props."
+7. The HTML `dialog` element uses the `showModal()` function to open the window and the `close()` function to close it. The selected date and time are tracked using `useState`.
 
-## Hogyan érdemes olvasni a React-kódot?
+## Icons
 
-1. A `main.jsx` elindítja az `App` komponenst.
-2. Az `App.jsx` `return` része mutatja az oldal felépítését. A nagybetűs elemek saját komponensek.
-3. A `useState` megjegyez egy értéket; például a `setCity` átírja a kiválasztott várost.
-4. Az `onChange` mezőmódosításra, az `onClick` kattintásra futtat egy függvényt.
-5. A `filter` kiválogatja az orvosokat, a `map` kártyákat készít belőlük.
-6. A `DoctorCard` a szülőtől kapja a `doctor`, `date` és `minimumDate` adatokat. Ezek a props-ok.
-7. A HTML `dialog` elem `showModal()` függvénye nyitja, a `close()` függvénye zárja az ablakot. A kiválasztott napot és időt a `useState` jegyzi meg.
+The icons are provided by the [Bootstrap Icons](https://icons.getbootstrap.com/) library.
+The `main.jsx` file loads the library's stylesheet. Within the components, icons are rendered directly using `i` elements and `bi-*` CSS classes.
 
-## Ikonok
-
-Az ikonok a [Bootstrap Icons](https://icons.getbootstrap.com/) csomagból érkeznek.
-A `main.jsx` betölti a csomag stíluslapját. A komponensekben közvetlenül
-`i` elemek és `bi-*` CSS-osztályok jelenítik meg az ikonokat.
-
-Például: `<i className="icon bi bi-heart" aria-hidden="true" />` egy szívet mutat.
-A `bi-heart` osztály átírásával cserélheted az ikont; a méretet a `fontSize` adja meg.
-A szakterületek ikonnevei a `data.js` fájl `icon` mezőiben szerepelnek.
-A fogászathoz mosoly, az általános orvosi jelhez pulzusos szív került.
-A csomag MIT licencű; a licenc másolata a `public/licenses` mappában található.
-
-## Képek cseréje
-
-A `public/images` mappába tegyél saját képet, majd a `Hero.jsx` vagy a `DoctorCard.jsx` megfelelő
-`img` elemének `src` értékét írd át, például `/images/orvos.jpg` értékre.
-Az egyes orvosok eltérő fotóihoz bővítsd a `data.js` fájlban található `doctors` tömb elemeit egy
-`image` mezővel, és használd így: `src={doctor.image}`.
-
-## Éles build
+## Production build
 
 ```bash
 npm run build
 ```
 
-A Vite a `dist` mappába készíti el a statikus oldalt.
+Vite generates the static site in the `dist` folder.
