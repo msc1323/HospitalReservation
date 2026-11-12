@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
-// A keresőben megadott dátum opcionális: az ablakban is lehet napot választani.
+// The date entered in the search field is optional; you can also select a day within the window.
 export default function DoctorCard({ doctor, date, minimumDate }) {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const times = ["09:00", "10:30", "14:00"];
 
-  // Minden orvos ablaka saját azonosítót kap, így a megfelelő ablakot nyitjuk ki.
+  // Every doctor's window has its own unique identifier, so we can open the correct window.
   const dialogId = "booking-" + doctor.id;
   const validDate = selectedDate !== "" && selectedDate >= minimumDate;
 
   function openBooking() {
-    // Ha a keresőben nem választottunk napot, a mai napot ajánljuk fel.
+    // If no day was selected in the search, we suggest today.
     setSelectedDate(date || minimumDate);
     setSelectedTime("");
-    // A showModal beépített böngészőfüggvény: megnyitja a dialog elemet.
-    // A böngésző kezeli a fókuszt és az Escape billentyűvel történő bezárást is.
+    // showModal is a built-in browser function: it opens the dialog element.
+    // The browser handles the focus as well as closing via the Escape key.
     document.getElementById(dialogId).showModal();
   }
 
@@ -56,13 +56,13 @@ export default function DoctorCard({ doctor, date, minimumDate }) {
         </div>
       </div>
 
-      {/* A dialog alapból rejtve van. Megnyitásakor az oldal fölött jelenik meg. */}
+      {/* The dialog is hidden by default. When opened, it appears over the page. */}
       <dialog
         id={dialogId}
         className="booking-dialog"
         aria-labelledby={dialogId + "-title"}
         onClick={(event) => {
-          // Csak a háttérre kattintás zárja be, az ablak tartalmára kattintás nem.
+          // Only clicking the backdrop closes the dialog, not the content area.
           if (event.target === event.currentTarget) closeBooking();
         }}
       >
