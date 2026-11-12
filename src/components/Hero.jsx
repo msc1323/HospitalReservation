@@ -1,6 +1,6 @@
 import React from "react";
 
-// Ez egy statikus komponens: csak a nyitó szöveget és a helyőrző képet mutatja.
+// This is a static component: it only displays the opening text and the placeholder image.
 export default function Hero() {
   return (
     <div className="container hero-grid">
