@@ -1,6 +1,6 @@
 import React from "react";
 
-// A lábléc külön fájlban van, így könnyű megtalálni és átírni.
+// The footer is in a separate file, making it easy to find and edit.
 export default function Footer() {
   return (
     <footer className="footer container">
