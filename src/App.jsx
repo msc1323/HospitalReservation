@@ -6,22 +6,22 @@ import Footer from "./components/Footer.jsx";
 import { doctors, specialties } from "./data.js";
 
 export default function App() {
-  // A useState megjegyez egy értéket. A set... függvénnyel módosíthatjuk.
-  // Üres szakterület vagy város azt jelenti, hogy nincs ilyen szűrés.
+  // useState remembers a value, we can modify it using the set function.
+  // An empty field for specialization or city means that no such filter is applied.
   const [specialty, setSpecialty] = useState("");
   const [city, setCity] = useState("");
   const [date, setDate] = useState("");
   const [showAll, setShowAll] = useState(false);
 
-  // A dátummező ÉÉÉÉ-HH-NN formátumot vár. A padStart két számjegyre egészít ki.
+  // The date field expects the YYYY-MM-DD format, padStart expands it to two digits.
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
   const minimumDate = year + "-" + month + "-" + day;
 
-  // A filter új listát készít: csak a feltételeknek megfelelő orvosokat hagyja meg.
-  // A lista a keresőmezők módosításakor azonnal frissül.
+  // The filter creates a new list: it keeps only the doctors who meet the criteria.
+  // The list updates immediately when the search fields are modified.
   const filteredDoctors = doctors.filter((doctor) => {
     if (specialty !== "" && doctor.specialty !== specialty) {
       return false;
@@ -32,14 +32,14 @@ export default function App() {
     return true;
   });
 
-  // Alaphelyzetben csak három kártyát mutatunk. A slice nem módosítja az eredeti listát.
+  // By default, we only show three cards. The slice does not modify the original list.
   let visibleDoctors = filteredDoctors;
   if (showAll === false) {
     visibleDoctors = filteredDoctors.slice(0, 3);
   }
 
   function handleSearch(event) {
-    // A böngésző ne töltse újra az oldalt az űrlap elküldésekor.
+    // The browser should not reload the page when the form is submitted.
     event.preventDefault();
     setShowAll(true);
     document.getElementById("orvosok").scrollIntoView();
@@ -60,7 +60,7 @@ export default function App() {
 
   return (
     <>
-      {/* A nagyobb oldalrészek külön komponensek, amelyeket itt használunk fel. */}
+      {/* The larger side sections are separate components that are used here. */}
       <Header />
       <main>
         <section className="hero">
@@ -73,7 +73,7 @@ export default function App() {
                   <span className="field-label">
                     Milyen szakorvost keresel?
                   </span>
-                  {/* A value a jelenlegi érték, az onChange kezeli a választást. */}
+                  {/* value is the current value, and `onChange` handles the selection. */}
                   <select
                     value={specialty}
                     onChange={(event) => setSpecialty(event.target.value)}
@@ -136,7 +136,7 @@ export default function App() {
               <br className="desktop-break" /> a számodra megfelelő segítséget.
             </p>
           </div>
-          {/* A map a tömb minden eleméből egy kártyát készít. A key egyedi azonosító. */}
+          {/* The map creates a card from each element of the array. The key is a unique identifier. */}
           <div className="specialty-grid">
             {specialties.map((item) => (
               <button
@@ -181,7 +181,7 @@ export default function App() {
                     aria-hidden="true"
                   />
                 </button>
-                {/* A && utáni rész csak akkor jelenik meg, ha a feltétel igaz. */}
+                {/* The && operator ensures that the following content is only displayed when the condition is true. */}
                 {showAll && (
                   <button
                     className="text-link"
@@ -195,7 +195,7 @@ export default function App() {
 
             <div className="doctor-grid">
               {visibleDoctors.map((doctor) => (
-                // A kártya az orvost, az opcionális dátumot és a legkorábbi napot kapja meg.
+                // The card receives the doctor, the optional date, and the earliest date.
                 <DoctorCard
                   key={doctor.id}
                   doctor={doctor}
