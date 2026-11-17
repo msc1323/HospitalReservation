@@ -1,67 +1,70 @@
-﻿using HospitalReservation.Data;
+using HospitalReservation.Data;
 using HospitalReservation.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
-namespace HospitalReservation.Controllers
+namespace HospitalReservation.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class DoctorController : ControllerBase
 {
-    [Route("api/[Controller]")]
-    [ApiController]
-    public class DoctorController : Controller
+    private readonly ApplicationDbContext _db;
+
+    public DoctorController(ApplicationDbContext db)
     {
-        private readonly ApplicationDbContext _db;
+        _db = db;
+    }
 
-        public DoctorController(ApplicationDbContext db)
+    [Authorize(Roles = "Admin")]
+    [HttpGet("bookings")]
+    public async Task<IActionResult> Index()
+    {
+        var bookingList = await _db.Bookings
+            .Where(p => p.FinishTime > DateTime.Now && p.Status)
+            .OrderBy(p => p.StartTime)
+            .ThenBy(p => p.Id)
+            .ToListAsync();
+
+        return Ok(bookingList);
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpGet("urgents")]
+    public async Task<IActionResult> GetUrgents()
+    {
+        var patientList = await _db.Patients
+            .Where(p => p.PrbInformation.Urgent)
+            .ToListAsync();
+        return Ok(patientList);
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpPost("out")]
+    public async Task<IActionResult> OutOfOffice(BookingDtoOOO request)
+    {
+        var exists = await _db.Bookings.AnyAsync(item =>
+            item.DoctorId == request.DoctorId &&
+            item.StartTime < request.FinishTime &&
+            item.FinishTime > request.StartTime);
+
+        if (exists)
         {
-            _db = db;
+            return Conflict(new { message = "Ez az időpont már foglalt vagy blokkolt." });
         }
 
-        [HttpGet("bookings")]
-        public async Task<IActionResult> Index()
+        var booking = new Booking
         {
-            var booking_list = await _db.Bookings
-                .Where(p => p.FinishTime > DateTime.Now && p.Status == true)
-                .OrderBy(p => p.StartTime)
-                .ThenBy(p => p.Id)
-                .ToListAsync();
+            DoctorId = request.DoctorId,
+            StartTime = request.StartTime,
+            FinishTime = request.FinishTime,
+            Comment = request.Comment,
+            Status = false
+        };
 
-            return Ok(booking_list);
-        }
-
-        [HttpGet("urgents")]
-        public async Task<IActionResult> GetUrgents()
-        {
-            var patient_list = await _db.Patients
-                .Where(p => p.PrbInformation.Urgent == true) //Itt szükséges navigation properties
-                .ToListAsync();
-            return Ok(patient_list);
-        }
-
-        [HttpPost("out")] //Nem elérhető időpontok beállítása
-        public async Task<IActionResult> OutOfOffice(BookingDtoOOO request)
-        {
-            var booking = new Booking
-            {
-                DoctorId = request.DoctorId,
-                StartTime = request.StartTime,
-                FinishTime = request.FinishTime,
-                Comment = request.Comment,
-                Status = false
-            };
-
-            foreach (var item in _db.Bookings)
-            {
-                if (item.StartTime == booking.StartTime && item.DoctorId == booking.DoctorId)
-                {
-                    return Conflict(new { success = false, message = "Ez az időpontot már valaki lefoglalta!" });
-                }
-            }
-            _db.Bookings.Add(booking);
-
-            await _db.SaveChangesAsync();
-            return Ok();
-        }
+        _db.Bookings.Add(booking);
+        await _db.SaveChangesAsync();
+        return Ok();
     }
 }

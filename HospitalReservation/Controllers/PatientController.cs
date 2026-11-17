@@ -1,37 +1,38 @@
-﻿using HospitalReservation.Data;
-using Microsoft.AspNetCore.Mvc;
+using HospitalReservation.Data;
 using HospitalReservation.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalReservation.Controllers
+namespace HospitalReservation.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class PatientController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PatientController : Controller
+    private readonly ApplicationDbContext _db;
+
+    public PatientController(ApplicationDbContext db)
     {
-        private readonly ApplicationDbContext _db;
+        _db = db;
+    }
 
-        public PatientController(ApplicationDbContext db)
+    [Authorize(Roles = "Admin")]
+    [HttpPost("new")]
+    public async Task<IActionResult> AddPatient(Patient patient)
+    {
+        try
         {
-            _db = db;
+            patient.SystemField.CreatedAt = DateTime.UtcNow;
+            patient.SystemField.UpdatedAt = DateTime.UtcNow;
+            patient.SystemField.isActive = true;
+
+            _db.Patients.Add(patient);
+            await _db.SaveChangesAsync();
+            return Ok();
         }
-
-        [HttpPost("new")]
-        public async Task<IActionResult> AddPatient(Patient patient)
+        catch
         {
-            try
-            {
-                patient.SystemField.CreatedAt = DateTime.UtcNow;
-                patient.SystemField.UpdatedAt = DateTime.UtcNow;
-                patient.SystemField.isActive = true;
-
-                _db.Patients.Add(patient);
-                await _db.SaveChangesAsync();
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
+            return StatusCode(500, new { message = "A beteg mentése nem sikerült." });
         }
     }
 }

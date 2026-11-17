@@ -1,6 +1,4 @@
 import React from "react";
-
-// Ez egy statikus komponens: csak a nyitó szöveget és a helyőrző képet mutatja.
 export default function Hero() {
   return (
     <div className="container hero-grid">
@@ -47,7 +45,7 @@ export default function Hero() {
       <div className="hero-visual">
         <img
           className="hero-image"
-          src="/dist/images/consultation-placeholder.svg"
+          src={`${import.meta.env.BASE_URL}images/consultation-placeholder.svg`}
           alt="Helyőrző illusztráció egy orvosi konzultációhoz"
           fetchPriority="high"
         />

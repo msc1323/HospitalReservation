@@ -1,79 +1,204 @@
-# Orvosi időpontfoglaló főoldal
+# Orvosi időpontfoglaló
 
-Egyszerű React főoldal magyar magyarázó kommentekkel, külön JSX- és CSS-fájllal.
-Nincs backend, valódi időpontfoglalás, regisztráció vagy adatküldés.
-Az orvosnevek és az időpontok kitalált bemutató adatok.
+Egyetemi projektmunka: **ASP.NET Core 8 + SQLite + React + Vite**.
 
-## Elindítás
+## Mi van benne most?
 
-A projekt mappájában futtasd:
+A projekt át lett alakítva a kért szűkebb rendelési kínálatra:
 
-```bash
-npm install
-npm run dev
+- **Kardiológia** – 1 idősebb férfi szakorvos
+- **Bőrgyógyászat** – 1 idősebb női szakorvos
+- **Fogászat** – 1 fiatalabb fogorvos + 1 fiatalabb dentálhigiénikus
+- **Gyermekgyógyászat** – 1 fiatalabb férfi + 1 fiatalabb női gyermekorvos
+
+Összesen **6 szakember** jelenik meg a felületen, saját profilképekkel.
+
+## Fő funkciók
+
+- orvoslista és szakterület szerinti szűrés
+- betegregisztráció és bejelentkezés
+- szabad időpontok lekérdezése adott orvoshoz és dátumhoz
+- időpontfoglalás 30 perces sávokban
+- saját foglalások megtekintése
+- jövőbeli foglalás lemondása
+- admin felület (orvosok és betegek listázása, inaktiválása, új orvos felvétele)
+
+---
+
+## Fontos: kell külön adatbázist futtatni?
+
+**Nem.**
+
+A projekt **SQLite**-ot használ, tehát **nem kell külön adatbázis-szervert** indítani.
+A backend induláskor:
+
+1. automatikusan lefuttatja a migrációkat,
+2. létrehozza a helyi `.db` fájlt, ha nincs,
+3. betölti a 6 demo szakembert.
+
+Tehát lokális futtatáshoz elég a backend és a frontend.
+
+---
+
+## Indítás VS Code-ban
+
+Két terminál kell.
+
+### 1. Backend indítása
+
+A projekt gyökérmappájából:
+
+```powershell
+cd HospitalReservation
+dotnet restore
+dotnet run --launch-profile http
 ```
 
-Ha Windows PowerShellben az `npm` futtatását a szkript-házirend tiltja,
-használd az `npm.cmd install` és `npm.cmd run dev` parancsokat.
-Nyisd meg a terminálban megjelenő helyi címet.
+A backend címe:
 
-## A fájlok szerepe
-
-- `src/main.jsx`: elindítja a Reactet és betölti a CSS-t.
-- `src/App.jsx`: összeállítja a főoldalt és kezeli a keresőmezőket.
-- `src/data.js`: a 12 mintaorvos és a 6 szakterület adatai.
-- `src/components/Header.jsx`: fejléc és mobilmenü.
-- `src/components/Hero.jsx`: a nyitó szöveg és a helyőrző kép.
-- `src/components/DoctorCard.jsx`: egy orvoskártya és a felugró időpontválasztó ablak.
-- `src/components/Footer.jsx`: lábléc.
-- `src/style.css`: az oldal színei, elrendezése és mobilnézete.
-- `public/images/`: a képek helyét jelölő SVG-illusztrációk.
-- `index.html`: a React alkalmazást betöltő HTML-fájl.
-
-## Mit lehet kipróbálni?
-
-- A keresőmezők módosításakor a lista azonnal szűkül szakterület és város alapján.
-- Az „Időpontot keresek” gomb megmutatja az összes találatot, és a listához görget.
-- A szakterületkártyákra kattintás ugyanúgy szűri az orvosokat.
-- Az „Összes orvos” gomb megmutatja mind a 12 bemutató profilt, szakterületenként két mintaorvossal.
-- Az „Időpontok” gomb felugró ablakot nyit, ahol napot és minta időpontot választhatsz. Nem szükséges előre dátumot megadni a keresőben.
-- Az ablak az X gombbal, a „Rendben” gombbal, Escape-pel vagy a sötét háttérre kattintva zárható be.
-- A dátum a bemutató időpont napját állítja be; valódi elérhetőségi naptár nincs.
-- A mobilmenü nyitható és bezárható.
-
-## Hogyan érdemes olvasni a React-kódot?
-
-1. A `main.jsx` elindítja az `App` komponenst.
-2. Az `App.jsx` `return` része mutatja az oldal felépítését. A nagybetűs elemek saját komponensek.
-3. A `useState` megjegyez egy értéket; például a `setCity` átírja a kiválasztott várost.
-4. Az `onChange` mezőmódosításra, az `onClick` kattintásra futtat egy függvényt.
-5. A `filter` kiválogatja az orvosokat, a `map` kártyákat készít belőlük.
-6. A `DoctorCard` a szülőtől kapja a `doctor`, `date` és `minimumDate` adatokat. Ezek a props-ok.
-7. A HTML `dialog` elem `showModal()` függvénye nyitja, a `close()` függvénye zárja az ablakot. A kiválasztott napot és időt a `useState` jegyzi meg.
-
-## Ikonok
-
-Az ikonok a [Bootstrap Icons](https://icons.getbootstrap.com/) csomagból érkeznek.
-A `main.jsx` betölti a csomag stíluslapját. A komponensekben közvetlenül
-`i` elemek és `bi-*` CSS-osztályok jelenítik meg az ikonokat.
-
-Például: `<i className="icon bi bi-heart" aria-hidden="true" />` egy szívet mutat.
-A `bi-heart` osztály átírásával cserélheted az ikont; a méretet a `fontSize` adja meg.
-A szakterületek ikonnevei a `data.js` fájl `icon` mezőiben szerepelnek.
-A fogászathoz mosoly, az általános orvosi jelhez pulzusos szív került.
-A csomag MIT licencű; a licenc másolata a `public/licenses` mappában található.
-
-## Képek cseréje
-
-A `public/images` mappába tegyél saját képet, majd a `Hero.jsx` vagy a `DoctorCard.jsx` megfelelő
-`img` elemének `src` értékét írd át, például `/images/orvos.jpg` értékre.
-Az egyes orvosok eltérő fotóihoz bővítsd a `data.js` fájlban található `doctors` tömb elemeit egy
-`image` mezővel, és használd így: `src={doctor.image}`.
-
-## Éles build
-
-```bash
-npm run build
+```text
+http://localhost:5193
 ```
 
-A Vite a `dist` mappába készíti el a statikus oldalt.
+### 2. Frontend indítása
+
+Új terminálban:
+
+```powershell
+cd client
+npm.cmd install --include=optional
+npm.cmd run dev
+```
+
+A frontend jellemzően itt nyílik meg:
+
+```text
+http://127.0.0.1:5173
+```
+
+A Vite proxy továbbítja az `/api` és `/doctors` kéréseket a .NET backendhez.
+
+---
+
+## Hogyan teszteld lépésről lépésre?
+
+### 1. Ellenőrizd, hogy betöltődnek-e az orvosok
+
+Ha minden rendben van, a főoldalon meg kell jelennie a **6 szakembernek**.
+
+Ha nem jelennek meg:
+- valószínűleg a backend nem fut,
+- vagy nem a `http` launch profile-lal indítottad.
+
+### 2. Regisztráció tesztelése
+
+- kattints a **Bejelentkezés / Regisztráció** gombra,
+- válts **regisztrációra**,
+- tölts ki minden mezőt,
+- adj meg legalább **6 karakteres jelszót**,
+- küldd el az űrlapot.
+
+Sikeres regisztráció után automatikusan be is jelentkeztet.
+
+### 3. Időpontfoglalás tesztelése
+
+- válassz ki egy szakembert,
+- kattints az **Időpontok** gombra,
+- válassz dátumot,
+- kattints egy szabad időpontra,
+- opcionálisan írj megjegyzést,
+- kattints az **Időpont lefoglalása** gombra.
+
+### 4. Foglalás ellenőrzése
+
+- kattints a **Fiókom / Foglalásaim** részre,
+- ott látnod kell az új időpontot,
+- a jövőbeli foglalás **Lemondás** gombbal törölhető.
+
+---
+
+## Ha a regisztráció most szerverhibát ír
+
+Ez általában ezek közül valamelyik:
+
+### A) A backend nincs elindítva
+Megoldás:
+
+```powershell
+cd HospitalReservation
+dotnet run --launch-profile http
+```
+
+### B) Régi / hibás SQLite fájl maradt a projektben
+Ha korábbi verzióval próbálkoztál, lehet, hogy a régi adatbázis bekavar.
+
+Töröld ezeket a fájlokat a `HospitalReservation` mappából, ha ott vannak:
+
+- `HospitalReservation.db`
+- `HospitalReservation.db-shm`
+- `HospitalReservation.db-wal`
+
+Utána indítsd újra a backendet. Az adatbázis automatikusan újra létrejön.
+
+### C) Nincs megfelelő .NET SDK
+Ehhez **.NET 8 SDK** kell.
+
+Ellenőrzés:
+
+```powershell
+dotnet --version
+```
+
+### D) A frontend fut, de a backend nem a megfelelő porton megy
+A frontend a `http://localhost:5193` címet várja.
+Ezért fontos, hogy így indítsd:
+
+```powershell
+dotnet run --launch-profile http
+```
+
+---
+
+## Admin tesztelése
+
+Először regisztrálj egy felhasználót. Utána állítsd le a backendet, majd indítsd újra így:
+
+```powershell
+$env:HOSPITAL_ADMIN_EMAIL="sajatemail@example.com"
+dotnet run --launch-profile http
+```
+
+Ez a regisztrált e-mail címet admin szerepkörhöz rendeli.
+Ezután:
+- jelentkezz be újra,
+- megjelenik az admin felület,
+- ott tudsz orvost hozzáadni, illetve orvost vagy beteget inaktiválni.
+
+---
+
+## Build
+
+Ha a frontend módosításait át akarod másolni a .NET alkalmazás `wwwroot/dist` mappájába:
+
+```powershell
+cd client
+npm.cmd run build
+```
+
+---
+
+## Rövid összefoglaló a futtatáshoz
+
+A projekt futásához elég:
+
+1. **.NET backend futtatása**
+2. **Vite frontend futtatása**
+
+**Nem kell külön DB szerver.**
+SQLite van beépítve.
+
+---
+
+## Megjegyzés
+
+Ez továbbra is demonstrációs egyetemi projekt, nem éles egészségügyi rendszer.

@@ -35,7 +35,9 @@ namespace HospitalReservation.Controllers
         [HttpGet("doctors")]
         public async Task<IActionResult> GetAllDoctors()
         {
-            var doctors = await _db.Doctors.ToListAsync();
+            var doctors = await _db.Doctors.Where(d => d.SystemField.isActive)
+                .Select(d => new { d.Id, d.PsInformation, d.ProfInformation, d.CInformationDoctor, d.SystemField })
+                .ToListAsync();
             return Ok(doctors);
         }
 
@@ -47,30 +49,24 @@ namespace HospitalReservation.Controllers
             )
         {
             var query = _db.Doctors
-            .Include(d => d.ProfInformation)
-            .Include(d => d.CInformationDoctor)
-            .Include(d => d.Bookings)
-            .AsQueryable();
+            .Where(d => d.SystemField.isActive);
 
-            //Szûrés szak szerint
             if (!string.IsNullOrWhiteSpace(spec))
             {
                 query = query.Where(d => d.ProfInformation.Specialization.ToLower().Contains(spec.ToLower()));
             }
 
-            //Szûrés város szerint
             if (!string.IsNullOrWhiteSpace(city))
             {
                 query = query.Where(d => d.CInformationDoctor.OfficeAddress.ToLower().Contains(city.ToLower()));
             }
 
-            //Szûrés dátum szerint
             if (date.HasValue)
             {
                 query = query.Where(d => d.Bookings.Any(b => b.StartTime == date && b.Status == false));
             }
 
-            var result = await query.ToListAsync();
+            var result = await query.Select(d => new { d.Id, d.PsInformation, d.ProfInformation, d.CInformationDoctor, d.SystemField }).ToListAsync();
             return Ok(result);
         }
     }

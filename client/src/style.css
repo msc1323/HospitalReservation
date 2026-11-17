@@ -1,4 +1,4 @@
-/* Alapbeállítások: a padding és a border is beleszámít az elemek szélességébe. */
+
 * {
   box-sizing: border-box;
 }
@@ -53,7 +53,7 @@ select {
   line-height: 1;
   vertical-align: middle;
 }
-/* Az ikonok automatikusan átveszik a körülöttük lévő szöveg színét. */
+
 button {
   border: 0;
 }
@@ -133,7 +133,7 @@ a {
   flex-shrink: 0;
 }
 
-/* Fejléc: a flex egymás mellé rendezi a logót, a menüt és a gombot. */
+
 .header {
   height: 88px;
   border-bottom: 1px solid #edf1ec;
@@ -189,7 +189,7 @@ a {
   border-radius: 7px;
 }
 
-/* Nyitó rész: két oszlop, balra szöveg, jobbra a cserélhető helyőrző kép. */
+
 .hero {
   background: #f5f7f1;
   padding: 53px 0 0;
@@ -302,7 +302,7 @@ h1 > span {
   color: #758277;
 }
 
-/* Kereső: a mezők címkéje és értéke egymás alatt jelenik meg. */
+
 .search-container {
   position: relative;
   margin-bottom: -30px;
@@ -368,7 +368,7 @@ h1 > span {
   margin-left: 3px;
 }
 
-/* Szakterületek: a grid hat egyforma szélességű oszlopot hoz létre. */
+
 .section {
   padding-top: 91px;
   padding-bottom: 63px;
@@ -396,7 +396,7 @@ h2 {
 }
 .specialty-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 13px;
 }
 .specialty-card {
@@ -464,7 +464,7 @@ h2 {
   color: #7b9c88;
 }
 
-/* Orvoskártyák: a képek helyi SVG fájlok, ezért internet nélkül is láthatók. */
+
 .doctors-section {
   background: #f8faf7;
   padding: 57px 0 61px;
@@ -626,7 +626,7 @@ h3 {
   color: #147d72;
 }
 
-/* A dialog az oldal fölött jelenik meg; a backdrop a mögötte lévő sötét réteg. */
+
 .booking-dialog {
   padding: 0;
   border: 1px solid #d6e2d5;
@@ -715,7 +715,7 @@ h3 {
   gap: 16px;
 }
 
-/* Táblagépen kevesebb oszlopot használunk, így nem lesznek túl keskenyek a kártyák. */
+
 @media (max-width: 1100px) {
   .container {
     width: calc(100% - 64px);
@@ -771,7 +771,7 @@ h3 {
   }
 }
 
-/* Mobilon a fő tartalom egy oszlopos, a navigáció külön gombbal nyitható. */
+
 @media (max-width: 760px) {
   html {
     scroll-padding-top: 25px;
@@ -977,4 +977,44 @@ h3 {
   *::after {
     transition: none !important;
   }
+}
+.nav-action { background: transparent; padding: 0; color: inherit; font-weight: 500; cursor: pointer; }
+.nav-action:hover { color: #147d72; }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(12, 38, 34, .62); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; overflow: auto; }
+.form-modal { background: white; border-radius: 16px; padding: 34px; width: min(100%, 530px); position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 80px #102b2740; }
+.form-modal h2 { margin: 10px 0; font-size: 27px; }
+.form-modal h3 { margin-top: 12px; }
+.form-modal .dialog-close { position: absolute; top: 19px; right: 18px; background: transparent; padding: 8px; cursor: pointer; }
+.form-modal .muted { color: #647771; font-size: 14px; margin: 7px 0 15px; }
+.form-label { display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 600; color: #314b45; margin: 12px 0; }
+.form-label input, .form-label select, .form-label textarea { border: 1px solid #cadad4; border-radius: 8px; padding: 11px 12px; width: 100%; font: inherit; background: #fff; color: #243e39; }
+.stack-form { margin: 18px 0; }
+.form-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.full-width { width: 100%; margin-top: 12px; }
+.form-error { color: #9c2d2d; background: #fff0ef; border-radius: 8px; padding: 12px; margin: 12px 0; font-size: 14px; }
+.form-success { color: #17694e; background: #eaf8f2; border-radius: 8px; padding: 12px; margin: 12px 0; font-size: 14px; }
+.centered { display: flex; margin: 14px auto 0; }
+.time-label { margin: 19px 0 12px; font-size: 14px; font-weight: 600; }
+.time-slot:disabled { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.time-slots { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; }
+.time-slot { padding: 10px 14px; border-radius: 7px; background: #eff7f4; color: #246458; font-size: 14px; border: 1px solid #cbded6; }
+.time-slot.selected { background: #147d72; border-color: #147d72; color: white; }
+.wide-modal { width: min(100%, 700px); }
+.booking-list { margin: 18px 0; }
+.booking-row { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 17px 0; border-bottom: 1px solid #e6eeeb; }
+.booking-row p { margin-top: 5px; font-size: 13px; }
+.panel-empty { padding: 20px 0; }
+.tab-row { display: flex; gap: 10px; margin: 20px 0; }
+.tab-row button { padding: 10px 16px; border-radius: 7px; background: #edf5f1; }
+.tab-row .active { background: #147d72; color: white; }
+.admin-form { border-top: 1px solid #e5eeeb; padding-top: 20px; }
+@media(max-width: 680px) { .form-modal { padding: 25px 18px; } .form-two { grid-template-columns: 1fr; gap: 0; } .booking-row { flex-direction: column; align-items: flex-start; } }
+
+.specialty-grid-compact {
+  grid-template-columns: repeat(4, 1fr);
+}
+.doctor-role {
+  color: #60746b;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
